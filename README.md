@@ -28,3 +28,4 @@ Plugins.DataStore.SQL	SQL Server data storage for production	CoreBusiness
 
 <img width="760" height="733" alt="image" src="https://github.com/user-attachments/assets/21d6e3df-c24f-42ec-a406-b352e5cd610f" />
 
+<img width="671" height="327" alt="image" src="https://github.com/user-attachments/assets/a5323df0-5f30-43ee-a29d-84f28a6a2127" />
