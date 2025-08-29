@@ -35,7 +35,7 @@ namespace Plugins.DataStore.InMemory
                     x.TimeStamp.Date == date.Date);            
         }
 
-        public void Save(string cashierName, int productId, string productName, double price, int beforeQty, int soldQty)
+        public void Save(string cashierName, int ItemId, string ItemName, double price, int beforeQty, int soldQty)
         {
             int transactionId = 0;
             if (transactions != null && transactions.Count > 0)
@@ -51,8 +51,8 @@ namespace Plugins.DataStore.InMemory
             transactions.Add(new Transaction
             {
                 TransactionId = transactionId,
-                 ProductId = productId,
-                 ProductName = productName,
+                 ItemId = ItemId,
+                 ItemName = ItemName,
                  TimeStamp = DateTime.Now,
                  Price = price,
                  BeforeQty = beforeQty,

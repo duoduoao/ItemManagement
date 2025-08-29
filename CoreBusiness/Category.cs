@@ -12,6 +12,6 @@ namespace CoreBusiness
         public string Description { get; set; }
 
         // navigation property for ef core
-        public List<Product> Products { get; set; }
+        public List<Item> Items { get; set; }
     }
 }

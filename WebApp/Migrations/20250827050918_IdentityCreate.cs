@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WebApp.Migrations
+namespace WebAppBlazor.Migrations
 {
     /// <inheritdoc />
     public partial class IdentityCreate : Migration

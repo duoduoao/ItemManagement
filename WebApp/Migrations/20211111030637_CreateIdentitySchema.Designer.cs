@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Data;
+using WebAppBlazor.Data;
 
-namespace WebApp.Migrations
+namespace WebAppBlazor.Migrations
 {
     [DbContext(typeof(AccountContext))]
     [Migration("20211111030637_CreateIdentitySchema")]

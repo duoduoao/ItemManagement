@@ -33,12 +33,12 @@ namespace Plugins.DataStore.SQL
                     x.TimeStamp.Date == date.Date);
         }
 
-        public void Save(string cashierName, int productId, string productName, double price, int beforeQty, int soldQty)
+        public void Save(string cashierName, int ItemId, string ItemName, double price, int beforeQty, int soldQty)
         {
             var transaction = new Transaction
             {
-                ProductId = productId,
-                ProductName = productName,
+                ItemId = ItemId,
+                ItemName = ItemName,
                 TimeStamp = DateTime.Now,
                 Price = price,
                 BeforeQty = beforeQty,

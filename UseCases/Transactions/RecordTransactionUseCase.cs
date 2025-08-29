@@ -10,20 +10,20 @@ namespace UseCases
     public class RecordTransactionUseCase : IRecordTransactionUseCase
     {
         private readonly ITransactionRepository transactionRepository;
-        private readonly IGetProductByIdUseCase getProductByIdUseCase;
+        private readonly IGetItemByIdUseCase getItemByIdUseCase;
 
         public RecordTransactionUseCase(
             ITransactionRepository transactionRepository,
-            IGetProductByIdUseCase getProductByIdUseCase)
+            IGetItemByIdUseCase getItemByIdUseCase)
         {
             this.transactionRepository = transactionRepository;
-            this.getProductByIdUseCase = getProductByIdUseCase;
+            this.getItemByIdUseCase = getItemByIdUseCase;
         }
 
-        public void Execute(string cashierName, int productId, int qty)
+        public void Execute(string cashierName, int ItemId, int qty)
         {
-            var product = getProductByIdUseCase.Execute(productId);
-            transactionRepository.Save(cashierName, productId, product.Name, product.Price.Value, product.Quantity.Value, qty);
+            var Item = getItemByIdUseCase.Execute(ItemId);
+            transactionRepository.Save(cashierName, ItemId, Item.Name, Item.Price.Value, Item.Quantity.Value, qty);
         }
     }
 }

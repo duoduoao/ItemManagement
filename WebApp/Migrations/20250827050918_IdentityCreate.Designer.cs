@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Data;
+using WebAppBlazor.Data;
 
 #nullable disable
 
-namespace WebApp.Migrations
+namespace WebAppBlazor.Migrations
 {
     [DbContext(typeof(AccountContext))]
     [Migration("20250827050918_IdentityCreate")]

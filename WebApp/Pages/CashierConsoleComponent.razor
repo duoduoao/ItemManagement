@@ -1,4 +1,5 @@
 ﻿@page "/cashier_console"
+@using WebAppBlazor.Controls
 @attribute [Authorize(Policy = "CashierOnly")]
 
 @if (!string.IsNullOrWhiteSpace(cashierName))
@@ -16,11 +17,11 @@
     <br />
     <div class="row">
         <div class="col-4">
-            <SelectProductForSellingComponent OnProductSelected="SelectProduct"></SelectProductForSellingComponent>
+            <SelectItemForSellingComponent OnItemSelected="SelectItem"></SelectItemForSellingComponent>
             <br />
-            <SellProductComponent CashierName="@cashierName"
-                                  SelectedProduct="selectedProduct"
-                                  OnProductSold="SellProduct"></SellProductComponent>
+            <SellItemComponent CashierName="@cashierName"
+                                  SelectedItem="selectedItem"
+                                  OnItemSold="SellItem"></SellItemComponent>
         </div>
         <div class="col">
             <br/>
@@ -32,7 +33,7 @@
 @code {
     private TodayTransactionsComponent transactionComponent;
 
-    private Product selectedProduct;
+    private Item selectedItem;
     private string cashierName;
 
 
@@ -58,12 +59,12 @@
         }
     }
 
-    private void SelectProduct(Product product)
+    private void SelectItem(Item Item)
     {
-        selectedProduct = product;
+        selectedItem = Item;
     }
 
-    private void SellProduct(Product product)
+    private void SellItem(Item Item)
     {
         transactionComponent.LoadTransactions(cashierName);
     }

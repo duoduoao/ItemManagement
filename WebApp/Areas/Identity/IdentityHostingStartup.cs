@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApp.Data;
+using WebAppBlazor.Data;
 
-[assembly: HostingStartup(typeof(WebApp.Areas.Identity.IdentityHostingStartup))]
-namespace WebApp.Areas.Identity
+[assembly: HostingStartup(typeof(WebAppBlazor.Areas.Identity.IdentityHostingStartup))]
+namespace WebAppBlazor.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

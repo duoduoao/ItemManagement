@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApp.Data;
+using WebAppBlazor.Data;
 
 #nullable disable
 
-namespace WebApp.Migrations
+namespace WebAppBlazor.Migrations
 {
     [DbContext(typeof(AccountContext))]
     partial class AccountContextModelSnapshot : ModelSnapshot

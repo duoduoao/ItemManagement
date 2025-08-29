@@ -17,9 +17,9 @@ using System.Threading.Tasks;
 using UseCases;
 using UseCases.DataStorePluginInterfaces;
 using UseCases.UseCaseInterfaces;
-using WebApp.Data;
+using WebAppBlazor.Data;
 
-namespace WebApp
+namespace WebAppBlazor
 {
     public class Startup
     {
@@ -61,12 +61,12 @@ namespace WebApp
 
             //Dependency Injection for In-Memory Data Store
             //services.AddScoped<ICategoryRepository, CategoryInMemoryRepository>();
-            //services.AddScoped<IProductRepository, ProductInMemoryRepository>();
+            //services.AddScoped<IItemRepository, ProductInMemoryRepository>();
             //services.AddScoped<ITransactionRepository, TransactionInMemoryRepository>();
 
             //Dependency Injection for ef core Data Store for SQL
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
 
             //Dependency Injection for Use Cases and Repositories
@@ -75,13 +75,13 @@ namespace WebApp
             services.AddTransient<IEditCategoryUseCase, EditCategoryUseCase>();
             services.AddTransient<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>();
             services.AddTransient<IDeleteCategoryUseCase, DeleteCategoryUseCase>();
-            services.AddTransient<IViewProductsUseCase, ViewProductsUseCase>();
-            services.AddTransient<IAddProductUseCase, AddProductUseCase>();
-            services.AddTransient<IEditProductUseCase, EditProductUseCase>();
-            services.AddTransient<IGetProductByIdUseCase, GetProductByIdUseCase>();
-            services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
-            services.AddTransient<IViewProductsByCategoryId, ViewProductsByCategoryId>();
-            services.AddTransient<ISellProductUseCase, SellProductUseCase>();
+            services.AddTransient<IViewItemsUseCase, ViewItemsUseCase>();
+            services.AddTransient<IAddItemUseCase, AddItemUseCase>();
+            services.AddTransient<IEditItemUseCase, EditItemUseCase>();
+            services.AddTransient<IGetItemByIdUseCase, GetItemByIdUseCase>();
+            services.AddTransient<IDeleteItemUseCase, DeleteItemtUseCase>();
+            services.AddTransient<IViewItemsByCategoryId, ViewItemsByCategoryId>();
+            services.AddTransient<ISellItemUseCase, SellItemUseCase>();
             services.AddTransient<IRecordTransactionUseCase, RecordTransactionUseCase>();
             services.AddTransient<IGetTodayTransactionsUseCase, GetTodayTransactionsUseCase>();
             services.AddTransient<IGetTransactionsUseCase, GetTransactionsUseCase>();

@@ -8,71 +8,71 @@ using UseCases.DataStorePluginInterfaces;
 
 namespace Plugins.DataStore.InMemory
 {
-    public class ProductInMemoryRepository : IProductRepository
+    public class ItemInMemoryRepository : IItemRepository
     {
-        private List<Product> products;
+        private List<Item> Items;
 
-        public ProductInMemoryRepository()
+        public ItemInMemoryRepository()
         {
             // Init with default values
-            products = new List<Product>()
+            Items = new List<Item>()
             {
-                new Product { ProductId = 1, CategoryId = 1, Name = "Iced Tea", Quantity = 100, Price = 1.99},
-                new Product { ProductId = 2, CategoryId = 1, Name = "Canada Dry", Quantity = 200, Price = 1.99},
-                new Product { ProductId = 3, CategoryId = 2, Name = "Whole Wheat Bread", Quantity = 300, Price = 1.50},
-                new Product { ProductId = 4, CategoryId = 2, Name = "White Bread", Quantity = 300, Price = 1.50},
+                new Item { ItemId = 1, CategoryId = 1, Name = "Iced Tea", Quantity = 100, Price = 1.99},
+                new Item { ItemId = 2, CategoryId = 1, Name = "Canada Dry", Quantity = 200, Price = 1.99},
+                new Item { ItemId = 3, CategoryId = 2, Name = "Whole Wheat Bread", Quantity = 300, Price = 1.50},
+                new Item { ItemId = 4, CategoryId = 2, Name = "White Bread", Quantity = 300, Price = 1.50},
             };
         }
 
-        public void AddProduct(Product product)
+        public void AddItem(Item Item)
         {
-            if (products.Any(x => x.Name.Equals(product.Name, StringComparison.OrdinalIgnoreCase))) return;
+            if (Items.Any(x => x.Name.Equals(Item.Name, StringComparison.OrdinalIgnoreCase))) return;
 
-            if (products != null && products.Count > 0)
+            if (Items != null && Items.Count > 0)
             {
-                var maxId = products.Max(x => x.ProductId);
-                product.ProductId = maxId + 1;
+                var maxId = Items.Max(x => x.ItemId);
+                Item.ItemId = maxId + 1;
             }
             else
             {
-                product.ProductId = 1;
+                Item.ItemId = 1;
             }
 
 
-            products.Add(product);
+            Items.Add(Item);
         }
 
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<Item> GetItems()
         {
-            return products;
+            return Items;
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateItem(Item Item)
         {
-            var productToUpdate = GetProductById(product.ProductId);
-            if (productToUpdate != null)
+            var ItemToUpdate = GetItemById(Item.ItemId);
+            if (ItemToUpdate != null)
             {
-                productToUpdate.Name = product.Name;
-                productToUpdate.CategoryId = product.CategoryId;
-                productToUpdate.Price = product.Price;
-                productToUpdate.Quantity = product.Quantity;
+                ItemToUpdate.Name = Item.Name;
+                ItemToUpdate.CategoryId = Item.CategoryId;
+                ItemToUpdate.Price = Item.Price;
+                ItemToUpdate.Quantity = Item.Quantity;
             }
         }
 
-        public Product GetProductById(int productId)
+        public Item GetItemById(int ItemId)
         {
-            return products.FirstOrDefault(x => x.ProductId == productId);
+            return Items.FirstOrDefault(x => x.ItemId == ItemId);
         }
 
-        public void DeleteProduct(int productId)
+        public void DeleteItem(int ItemId)
         {
-            var productToDelete = GetProductById(productId);
-            if (productToDelete != null) products.Remove(productToDelete);
+            var ItemToDelete = GetItemById(ItemId);
+            if (ItemToDelete != null) Items.Remove(ItemToDelete);
         }
 
-        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+        public IEnumerable<Item> GetItemsByCategoryId(int categoryId)
         {
-            return products.Where(x => x.CategoryId == categoryId);
+            return Items.Where(x => x.CategoryId == categoryId);
         }
     }
 }

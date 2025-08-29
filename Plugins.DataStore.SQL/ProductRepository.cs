@@ -8,52 +8,52 @@ using UseCases.DataStorePluginInterfaces;
 
 namespace Plugins.DataStore.SQL
 {
-    public class ProductRepository : IProductRepository
+    public class ItemRepository : IItemRepository
     {
         private readonly MarketContext db;
 
-        public ProductRepository(MarketContext db)
+        public ItemRepository(MarketContext db)
         {
             this.db = db;
         }
 
-        public void AddProduct(Product product)
+        public void AddItem(Item Item)
         {
-            db.Products.Add(product);
+            db.Items.Add(Item);
             db.SaveChanges();
         }
 
-        public void DeleteProduct(int productId)
+        public void DeleteItem(int ItemId)
         {
-            var product = db.Products.Find(productId);
-            if (product == null) return;
+            var Item = db.Items.Find(ItemId);
+            if (Item == null) return;
 
-            db.Products.Remove(product);
+            db.Items.Remove(Item);
             db.SaveChanges();
         }
 
-        public Product GetProductById(int productId)
+        public Item GetItemById(int ItemId)
         {
-            return db.Products.Find(productId);
+            return db.Items.Find(ItemId);
         }
 
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<Item> GetItems()
         {
-            return db.Products.ToList();
+            return db.Items.ToList();
         }
 
-        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
+        public IEnumerable<Item> GetItemsByCategoryId(int categoryId)
         {
-            return db.Products.Where(x => x.CategoryId == categoryId).ToList();
+            return db.Items.Where(x => x.CategoryId == categoryId).ToList();
         }
 
-        public void UpdateProduct(Product product)
+        public void UpdateItem(Item Item)
         {
-            var prod = db.Products.Find(product.ProductId);
-            prod.CategoryId = product.CategoryId;
-            prod.Name = product.Name;
-            prod.Price = product.Price;
-            prod.Quantity = product.Quantity;
+            var prod = db.Items.Find(Item.ItemId);
+            prod.CategoryId = Item.CategoryId;
+            prod.Name = Item.Name;
+            prod.Price = Item.Price;
+            prod.Quantity = Item.Quantity;
 
             db.SaveChanges();
         }

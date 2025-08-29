@@ -1,0 +1,71 @@
+﻿@page "/Items"
+@using UseCases.UseCaseInterfaces
+@attribute [Authorize(Policy = "AdminOnly")]
+
+@inject NavigationManager NavigationManager
+@inject IViewItemsUseCase ViewItemsUseCase
+@inject IGetCategoryByIdUseCase GetCategoryByIdUseCase
+@inject IDeleteItemUseCase DeleteItemUseCase
+
+<h3>Items</h3>
+<br />
+@if (Items != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item Category</th>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Item in Items)
+            {
+                <tr>
+                    <td>@GetCategoryByIdUseCase.Execute(Item.CategoryId.Value)?.Name</td>
+                    <td>@Item.Name</td>
+                    <td>@(Math.Round(Item.Price.Value, 2))</td>
+                    <td>@Item.Quantity</td>
+                    <td>
+                        <button type="button" class="btn btn-link" @onclick="@(()=>OnEditItem(Item))">Edit</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-link" @onclick="@(()=>OnDeleteItem(Item.ItemId))">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<br />
+<button type="button" @onclick="OnClickAddItem" class="btn btn-primary">Add Item</button>
+
+
+@code {
+
+    private IEnumerable<Item> Items;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Items = ViewItemsUseCase.Execute();
+    }
+
+    private void OnClickAddItem()
+    {
+        NavigationManager.NavigateTo("/addItem");
+    }
+
+    private void OnEditItem(Item Item)
+    {
+        NavigationManager.NavigateTo($"/editItem/{Item.ItemId}");
+    }
+
+    private void OnDeleteItem(int ItemId)
+    {
+        DeleteItemUseCase.Execute(ItemId);
+    }
+}

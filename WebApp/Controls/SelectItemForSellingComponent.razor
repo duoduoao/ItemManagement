@@ -1,5 +1,5 @@
 ﻿@inject IViewCategoriesUseCase ViewCategoriesUseCase
-@inject IViewProductsByCategoryId ViewProductsByCategoryId
+@inject IViewItemsByCategoryId ViewItemsByCategoryId
 
 <div class="form-group">
     <label for="category">Category</label>
@@ -11,7 +11,7 @@
         }
     </select>
 </div>
-@if (productsInCategory != null)
+@if (ItemsInCategory != null)
 {
     <table class="table">
         <thead>
@@ -21,10 +21,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var prod in productsInCategory)
+            @foreach (var prod in ItemsInCategory)
             {
-                <tr @onclick="@(() => OnSelectProduct(prod))" 
-                    style="@(prod.ProductId == selectedProductId?"background-color:beige; cursor:pointer;":"cursor:pointer")">
+                <tr @onclick="@(() => OnSelectItem(prod))" 
+                    style="@(prod.ItemId == selectedItemId?"background-color:beige; cursor:pointer;":"cursor:pointer")">
                     <td>
                         @prod.Name
                     </td>
@@ -40,11 +40,11 @@
 
 @code {
 
-    private IEnumerable<Product> productsInCategory;
-    private int selectedProductId;
+    private IEnumerable<Item> ItemsInCategory;
+    private int selectedItemId;
 
     [Parameter]
-    public EventCallback<Product> OnProductSelected{ get; set; }
+    public EventCallback<Item> OnItemSelected{ get; set; }
 
     private int selectedCategoryId;
     private int SelectedCategoryId {
@@ -55,10 +55,10 @@
         set
         {
             selectedCategoryId = value;
-            productsInCategory = ViewProductsByCategoryId.Execute(value);
+            ItemsInCategory = ViewItemsByCategoryId.Execute(value);
 
             //need clean
-            OnSelectProduct(null);
+            OnSelectItem(null);
            
             //need
             StateHasChanged();
@@ -73,10 +73,10 @@
         categories = ViewCategoriesUseCase.Execute();
     }
 
-    private void OnSelectProduct(Product product)
+    private void OnSelectItem(Item Item)
     {        
-        OnProductSelected.InvokeAsync(product);
-        if (product != null) selectedProductId = product.ProductId;
+        OnItemSelected.InvokeAsync(Item);
+        if (Item != null) selectedItemId = Item.ItemId;
 
     }
 

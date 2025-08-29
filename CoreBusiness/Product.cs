@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CoreBusiness
 {
-    public class Product
+    public class Item
     {
-        public int ProductId { get; set; }
+        public int ItemId { get; set; }
         [Required]
         public int? CategoryId { get; set; }
         [Required]

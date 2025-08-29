@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebApp.Data
+namespace WebAppBlazor.Data
 {
     public class AccountContext : IdentityDbContext<IdentityUser>
     {
