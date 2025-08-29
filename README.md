@@ -1,5 +1,6 @@
 ItemManagement System
-The ItemManagement System is a retail and inventory management application built following Clean Architecture principles using .NET 8.0.
+
+The ItemManagement System is an application built following Clean Architecture principles using .NET 8.0.
 It provides a modular, maintainable, and extensible structure for handling inventory operations in different environments (development, testing, and production).
 
 📌 Purpose & Scope
